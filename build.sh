@@ -8,7 +8,7 @@ echo "📂 Listing Directory Contents:"
 ls -al
 
 # output 폴더 생성
-mkdir -p "./output"
+mkdir -p output
 
 # 특정 디렉터리를 rsync로 복사 (현재 src가 존재하는 경로 반영)
 if [ -d "./src" ]; then
