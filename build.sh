@@ -1,4 +1,4 @@
 #!/bin/sh
 mkdir -p output
-rsync -av --exclude='.git' ./FrontEnd/ ./output/
-cp -R ./output/* ./FrontEnd/
+rsync -av --exclude='.git' ./output/
+cp -R ./output/* ./dearbirdy/
