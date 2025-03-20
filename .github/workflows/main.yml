@@ -20,7 +20,7 @@ jobs:
         with:
           source-directory: "output"
           destination-github-username: "hhshhhskk"
-          destination-repository-name: "FrontEnd"
+          destination-repository-name: "dearbirdy-FrontEnd"
           user-email: ${{ secrets.EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
