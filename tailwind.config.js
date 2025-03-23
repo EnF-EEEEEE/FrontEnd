@@ -16,7 +16,7 @@ module.exports = {
       },
 
       maxWidth: { global: "476px" },
-      spacing: { global: "16px", bottomFixed: "44px" },
+      spacing: { global: "16px" },
 
       colors: {
         background: "#F9F8F3",
