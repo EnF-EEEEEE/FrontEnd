@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@config "../../tailwind.config.js";
+
 @font-face {
   font-family: "Ownglyph_wiseelist-Rg";
   src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2501-1@1.1/Ownglyph_wiseelist-Rg.woff2")
