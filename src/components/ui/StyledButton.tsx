@@ -17,12 +17,14 @@ export default function StyledButton({
     "w-full rounded-[12px] font-medium text-Body1_M_16 flex items-center justify-center gap-[4px] px-global py-[13px]";
 
   const variants = {
-    primary: "bg-black01 text-white01",
-    "outline-yellow": "bg-transparent border border-green01 text-green01",
-    "outline-green": "bg-[#F0F1EC] border border-green03 text-black01",
+    primary: "cursor-pointer bg-black01 text-white01",
+    "outline-yellow":
+      "cursor-pointer bg-transparent border border-green01 text-green01",
+    "outline-green":
+      "cursor-pointer bg-[#F0F1EC] border border-green03 text-black01",
   };
 
-  const disabledClass = "bg-gray01 text-gray03 cursor-not-allowed";
+  const disabledClass = "bg-gray01 text-gray03 cursor-default";
 
   return (
     <button
