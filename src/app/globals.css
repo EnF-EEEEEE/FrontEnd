@@ -61,6 +61,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Pretendard", sans-serif;
+  word-break: keep-all;
 }
 
 /* ✅ 온보딩 Swiper 전용 스타일 */
