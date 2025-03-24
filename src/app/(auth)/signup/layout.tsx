@@ -1,7 +1,30 @@
-export default function SingupLayout({
+"use client";
+
+import { useRouter } from "next/navigation";
+import CommonLayout from "@/components/layout/CommonLayout";
+import CommonHeader from "@/components/layout/CommonHeader";
+import ChevronLeft from "@/components/Icons/common/LeftArrow";
+
+export default function SignupLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="relative h-screen text-[#292D32]">{children}</div>;
+  const router = useRouter();
+
+  return (
+    <CommonLayout isFullScreen>
+      <CommonHeader
+        left={
+          <button onClick={() => router.back()}>
+            <ChevronLeft className="w-6 h-6" stroke="#292D32" />
+          </button>
+        }
+        title="회원가입"
+        className="mt-14"
+      />
+
+      <div className="py-global">{children}</div>
+    </CommonLayout>
+  );
 }
