@@ -19,10 +19,8 @@ module.exports = {
       spacing: { global: "16px" },
 
       colors: {
-        background: "#F9F8F3",
-        white1: "#FFFFFF",
-        white2: "#F9F8F3",
-
+        white01: "#FFFFFF",
+        white02: "#F9F8F3",
         black01: "#292D32",
         gray06: "#6B7178",
         gray05: "#8E8E93",
