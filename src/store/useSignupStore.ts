@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-interface UserCategory {
+export interface UserCategory {
   career: boolean;
   mental: boolean;
   relationship: boolean;
