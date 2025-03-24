@@ -6,6 +6,7 @@ interface CommonHeaderProps {
   right?: ReactNode;
   center?: ReactNode;
   className?: string;
+  noPadding?: boolean;
 }
 
 export default function CommonHeader({
@@ -14,10 +15,13 @@ export default function CommonHeader({
   center,
   right,
   className = "",
+  noPadding = false,
 }: CommonHeaderProps) {
   return (
     <header
-      className={`h-[56px] bg-white02 flex items-center justify-between px-global ${className}`}
+      className={`h-[56px] bg-white02 flex items-center justify-between ${
+        noPadding ? "" : "px-global"
+      } ${className}`}
     >
       <div className="w-[24px] h-[24px] flex items-center justify-center">
         {left ?? null}

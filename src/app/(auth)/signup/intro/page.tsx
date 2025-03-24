@@ -7,7 +7,7 @@ export default function SignupIntro() {
   const router = useRouter();
 
   return (
-    <>
+    <div className="mt-2">
       <div className="text-center whitespace-pre-wrap">
         <p className="text-Title2_B_24">
           {`안녕? 반가워요\n나는 편지를 전하는 파랑새예요`}
@@ -29,6 +29,6 @@ export default function SignupIntro() {
           좋아요!
         </StyledButton>
       </div>
-    </>
+    </div>
   );
 }

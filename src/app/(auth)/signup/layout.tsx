@@ -21,10 +21,10 @@ export default function SignupLayout({
           </button>
         }
         title="회원가입"
-        className="mt-14"
+        noPadding
       />
 
-      <div className="py-global">{children}</div>
+      <div className="py-2">{children}</div>
     </CommonLayout>
   );
 }
