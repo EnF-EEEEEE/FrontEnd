@@ -1,10 +1,10 @@
-export type Answer = 0 | 1 | 2;
+export type OptionValue = 0 | 1 | 2;
 export type Direction = "life" | "lifestyle";
 
 interface Option {
-  value: Answer;
-  emoji: string; // 이모지만 별도로 정의
-  label: string; // 순수 텍스트
+  value: OptionValue;
+  emoji: string;
+  label: string;
 }
 
 export interface Question {
@@ -32,7 +32,7 @@ export const questions: Question[] = [
     options: [
       { value: 2, emoji: "👓", label: "효율이 중요하죠" },
       { value: 1, emoji: "🟰", label: "비슷하다고 생각해요" },
-      { value: 0, emoji: "😄", label: "즐거워야해요!" },
+      { value: 0, emoji: "😄", label: "즐거워야 해요!" },
     ],
   },
 

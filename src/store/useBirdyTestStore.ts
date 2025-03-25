@@ -1,82 +1,70 @@
+import {
+  Direction,
+  OptionValue,
+  questions,
+} from "@/constants/birdyTestQuestions";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-export type Answer = 0 | 1 | 2; // ✅ 0: 아니다, 1: 보통이다, 2: 그렇다
-export type Direction = "life" | "lifestyle";
+export type Answer = OptionValue | null; // ✅ 0: 아니다, 1: 보통이다, 2: 그렇다, null: 답변 안 한 상태
 
 interface BirdyTestState {
-  testStep: number;
   answers: Answer[];
   lifeScore: number;
   lifestyleScore: number;
   birdType: string | null;
-  setTestStep: (step: number) => void;
-  nextTestStep: () => void;
-  prevTestStep: () => void;
   setAnswer: (index: number, answer: Answer) => void;
   calculateResults: () => void;
+  resetTest: () => void;
 }
 
 export const useBirdyTestStore = create<BirdyTestState>()(
   persist(
     (set, get) => ({
-      testStep: 0,
-      answers: Array(12).fill(0) as Answer[], // ✅ 초기값을 `Answer[]`로 명확하게 지정
+      answers: Array(12).fill(null),
       lifeScore: 0,
       lifestyleScore: 0,
       birdType: null,
 
-      setTestStep: (step) => set({ testStep: step }),
-      nextTestStep: () => set((state) => ({ testStep: state.testStep + 1 })),
-      prevTestStep: () =>
-        set((state) => ({ testStep: Math.max(0, state.testStep - 1) })),
-
-      /** ✅ 특정 질문에 대한 응답 저장 */
       setAnswer: (index, answer) =>
         set((state) => {
-          const newAnswers = [...state.answers];
-          newAnswers[index] = answer;
-          return { answers: newAnswers };
+          const updated = [...state.answers];
+          updated[index] = answer;
+          return { answers: updated };
         }),
 
-      /** ✅ 점수 계산 및 결과 저장 */
       calculateResults: () => {
         const answers = get().answers;
-        const lifeScore: number = calculateScore(answers, "life"); // ✅ `number` 타입으로 지정
+        const lifeScore = calculateScore(answers, "life");
         const lifestyleScore = calculateScore(answers, "lifestyle");
-        const matchedBird = matchBirdType(lifeScore, lifestyleScore);
+        const birdType = matchBirdType(lifeScore, lifestyleScore)?.name || null;
 
-        set({ lifeScore, lifestyleScore, birdType: matchedBird.name });
+        set({ lifeScore, lifestyleScore, birdType });
       },
+
+      resetTest: () =>
+        set({
+          answers: Array(12).fill(null),
+          lifeScore: 0,
+          lifestyleScore: 0,
+          birdType: null,
+        }),
     }),
     {
-      name: "birdytest-storage", // ✅ sessionStorage 키
-      storage: createJSONStorage(() => sessionStorage), // ✅ sessionStorage 사용하여 새로고침 후에도 유지
+      name: "birdytest-storage",
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
 
-/** ✅ 질문 데이터 */
-const questions = [
-  { id: 1, direction: "life" },
-  { id: 2, direction: "life" },
-  { id: 3, direction: "life" },
-  { id: 4, direction: "life" },
-  { id: 5, direction: "life" },
-  { id: 6, direction: "life" },
-  { id: 7, direction: "lifestyle" },
-  { id: 8, direction: "lifestyle" },
-  { id: 9, direction: "lifestyle" },
-  { id: 10, direction: "lifestyle" },
-  { id: 11, direction: "lifestyle" },
-  { id: 12, direction: "lifestyle" },
-];
-
 /** ✅ 특정 방향(life/lifestyle)의 점수 계산 */
 const calculateScore = (answers: Answer[], direction: Direction): number => {
-  return answers
-    .filter((_, index) => questions[index].direction === direction)
-    .reduce((sum, answer) => (sum + answer) as Answer, 0 as Answer) as number;
+  return answers.reduce((sum: number, answer, index) => {
+    const isTargetDirection = questions[index].direction === direction;
+    return isTargetDirection && answer !== null
+      ? sum + (answer as number)
+      : sum;
+  }, 0);
 };
 
 /** ✅ 새 유형 매칭 */
