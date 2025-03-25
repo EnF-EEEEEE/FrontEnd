@@ -1,6 +1,6 @@
 "use client";
 
-import { Answer, questions } from "@/constants/birdyTestQuestions";
+import { Answer, questions } from "@/constants/birdyTest";
 import { useEffect, useState } from "react";
 
 interface BirdyTestStepProps {
