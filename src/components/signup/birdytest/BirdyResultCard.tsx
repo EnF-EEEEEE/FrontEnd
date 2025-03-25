@@ -1,8 +1,9 @@
 "use client";
+
 import { useFetchBirdData } from "@/app/hooks/useFetchBirdData";
+import { birdStyleMap, defaultBirdStyle } from "@/constants/birdStyles";
 import BirdyImage from "./BirdyImage";
 import BirdyResultActions from "./BirdyResultActions";
-import { birdStyleMap, defaultBirdStyle } from "@/constants/birdStyles";
 
 // ✅ birdData가 null일 경우 기본 값 설정
 const defaultBirdData = {
@@ -52,6 +53,7 @@ const BirdyResultCard = ({ birdType }: BirdyResultCardProps) => {
 
         <p className="text-Body2_R_14">{userBirdData.explanation}</p>
       </div>
+
       <BirdyResultActions />
     </div>
   );

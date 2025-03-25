@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useBirdyTestStore } from "@/store/useBirdyTestStore";
-import ProgressBar from "../ui/ProgressBar";
+import ProgressBar from "../../ui/ProgressBar";
 import { questions } from "@/constants/birdyTest";
 import clsx from "clsx";
 
