@@ -107,7 +107,7 @@ export default function UserCategoryPage() {
     return (
       <LoadingSpinner
         message={`이제 나의 버디들을\n만나러 가볼까요?`}
-        onDone={() => router.push("/birdy-test")}
+        onDone={() => router.push("/birdy-test/intro")}
       />
     );
   }
