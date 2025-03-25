@@ -65,7 +65,7 @@ export default function NicknamePage() {
 
   const handleNext = () => {
     setNickname(nickname);
-    router.push("/signup/userRole");
+    router.push("/signup/user-role");
   };
 
   const helperMessage =

@@ -35,14 +35,14 @@ export default function UserRolePage() {
     if (selectedRole === "MENTEE") {
       setIsNavigating(true);
     }
-    router.push("/signup/userCategory");
+    router.push("/signup/user-category");
   };
 
   if (isNavigating) {
     return (
       <LoadingSpinner
         message={`이제 나의 버디들을\n만나러 가볼까요?`}
-        onDone={() => router.push("/birdyTest")}
+        onDone={() => router.push("/birdy-test")}
       />
     );
   }

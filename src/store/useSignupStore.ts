@@ -77,7 +77,7 @@ export const useSignupStore = create<SignupState>()(
 // 가입 도중 복귀 시 이동 경로 판단
 export const getSignupRedirectPath = (state: SignupState): string => {
   if (!state.nickname) return "/signup/intro";
-  if (!state.userRole) return "/signup/role";
-  if (state.userRole === "MENTOR") return "/signup/userCategory";
-  return "/birdyTest";
+  if (!state.userRole) return "/signup/user-role";
+  if (state.userRole === "MENTOR") return "/signup/user-category";
+  return "/birdy-test";
 };
