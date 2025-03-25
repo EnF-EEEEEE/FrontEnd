@@ -1,6 +1,8 @@
 "use client";
 
 import InfoBox from "@/components/common/InfoBox";
+
+import BirdyResultCard from "@/components/signup/birdyTestTemp/BirdyResultCard";
 import { Answer } from "@/constants/birdyTest";
 import { useBirdyTestStore } from "@/store/useBirdyTestStore";
 import { useSignupStore } from "@/store/useSignupStore";
