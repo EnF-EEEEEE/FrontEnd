@@ -3,6 +3,7 @@
 import InfoBox from "@/components/common/InfoBox";
 import RoleCard from "@/components/signup/RoleCard";
 import TermsStep from "@/components/signup/TermsStep";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import StyledButton from "@/components/ui/StyledButton";
 import { useSignupStore } from "@/store/useSignupStore";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,7 @@ export default function UserRolePage() {
     null
   );
   const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   const handleSelectRole = (role: "MENTEE" | "MENTOR") => {
     setSelectedRole(role);
@@ -31,10 +33,19 @@ export default function UserRolePage() {
   const handleTermsClose = () => {
     setIsTermsOpen(false);
     if (selectedRole === "MENTEE") {
-      router.push("/signup/complete");
+      setIsNavigating(true);
     }
     router.push("/signup/userCategory");
   };
+
+  if (isNavigating) {
+    return (
+      <LoadingSpinner
+        message={`이제 나의 버디들을\n만나러 가볼까요?`}
+        onDone={() => router.push("/birdyTest")}
+      />
+    );
+  }
 
   return (
     <>

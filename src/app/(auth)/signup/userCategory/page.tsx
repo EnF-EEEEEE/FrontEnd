@@ -1,6 +1,7 @@
 "use client";
 
 import InfoBox from "@/components/common/InfoBox";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import StyledButton from "@/components/ui/StyledButton";
 import { UserCategory, useSignupStore } from "@/store/useSignupStore";
 import Image from "next/image";
@@ -79,6 +80,7 @@ export default function UserCategoryPage() {
         .map(([k]) => k as CategoryType)
     )
   );
+  const [isNavigating, setIsNavigating] = useState(false);
 
   const handleToggle = (id: CategoryType) => {
     setSelected((prev) => {
@@ -95,10 +97,20 @@ export default function UserCategoryPage() {
       const result = Object.fromEntries(
         categories.map(({ id }) => [id, selected.has(id)])
       ) as Record<CategoryType, boolean>;
+
       setUserCategory(result);
-      router.push("signup/complete");
+      setIsNavigating(true);
     }
   };
+
+  if (isNavigating) {
+    return (
+      <LoadingSpinner
+        message={`이제 나의 버디들을\n만나러 가볼까요?`}
+        onDone={() => router.push("/birdyTest")}
+      />
+    );
+  }
 
   return (
     <div>

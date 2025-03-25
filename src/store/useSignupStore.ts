@@ -78,6 +78,6 @@ export const useSignupStore = create<SignupState>()(
 export const getSignupRedirectPath = (state: SignupState): string => {
   if (!state.nickname) return "/signup/intro";
   if (!state.userRole) return "/signup/role";
-  if (state.userRole === "MENTOR") return "/signup/interest";
-  return "/signup/done";
+  if (state.userRole === "MENTOR") return "/signup/userCategory";
+  return "/birdyTest";
 };
