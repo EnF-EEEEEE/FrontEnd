@@ -36,7 +36,12 @@ export default function OnboardingPage() {
   );
 
   return (
-    <CommonLayout noPadding bottomFixedButton={BottomFixedButton} isFullScreen>
+    <CommonLayout
+      noPadding
+      bottomFixedButton={BottomFixedButton}
+      isFullScreen
+      className="bg-[#a9c6ae]"
+    >
       <Swiper
         pagination={{
           clickable: true,
