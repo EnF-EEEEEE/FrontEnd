@@ -148,7 +148,7 @@ module.exports = {
       },
 
       fontFamily: {
-        nanumBrush: ["var(--font-nanumBrush)", "cursive"],
+        pretendard: ["var(--font-pretendard)"],
       },
       keyframes: {
         slideUp: {

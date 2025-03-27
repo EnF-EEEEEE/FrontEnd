@@ -43,7 +43,6 @@
 }
 
 html {
-  font-family: var(--font-pretendard);
   color: var(--foreground);
   background-color: var(--background);
   scrollbar-width: none;
