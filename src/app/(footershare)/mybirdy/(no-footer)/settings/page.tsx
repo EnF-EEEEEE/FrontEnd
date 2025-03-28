@@ -2,27 +2,15 @@
 
 import CommonHeader from "@/components/layout/CommonHeader";
 import SettingItem from "@/components/settings/settingItem";
-import MybirdyHeader from "@/components/ui/MybirdyHeader";
 import { SETTINGS_OPTIONS, SettingSection } from "@/constants/settings";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import LeftArrow from "../../../../../components/Icons/common/LeftArrow";
 
 const SettingsPage = () => {
-  const router = useRouter();
-
   const [isToggled, setIsToggled] = useState(false);
 
   return (
     <div className="-mx-global">
-      <CommonHeader
-        left={
-          <button onClick={() => router.back()} className="cursor-pointer">
-            <LeftArrow className="w-6 h-6" stroke="#292D32" />
-          </button>
-        }
-        title="설정"
-      />
+      <CommonHeader title="설정" />
 
       {SETTINGS_OPTIONS.map((section: SettingSection) => (
         <div key={section.category}>
