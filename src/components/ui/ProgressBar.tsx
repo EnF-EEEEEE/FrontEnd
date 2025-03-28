@@ -17,8 +17,11 @@ export default function ProgressBar({
     <div className="w-full">
       <div className="w-full bg-gray03 rounded-[10px] h-[5px]">
         <div
-          className={`rounded-[10px] transition-all, bg-[${color}]`}
-          style={{ width: `${percentage}%`, height: "100%" }}
+          className="rounded-[10px] h-full transition-all"
+          style={{
+            width: `${percentage}%`,
+            backgroundColor: color,
+          }}
         />
       </div>
     </div>
