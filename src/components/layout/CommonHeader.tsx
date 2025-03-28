@@ -29,7 +29,7 @@ export default function CommonHeader({
 
       <div className="flex-1 flex items-center justify-center">
         {center ?? (
-          <span className="text-Body1_B_16 text-black01 truncate">{title}</span>
+          <span className="text-Body1_B_18 text-black01 truncate">{title}</span>
         )}
       </div>
 
