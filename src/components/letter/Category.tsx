@@ -22,7 +22,7 @@ export default function Category() {
 
   return (
     <div>
-      <CommonHeader noPadding className="mb-2" />
+      <CommonHeader className="mb-2" />
 
       <div>
         <p className="text-Title3_B_20 whitespace-break-spaces mb-2">
