@@ -8,14 +8,12 @@ interface LetterGuideModalProps {
   isOpen: boolean;
   onClose: () => void;
   type: GuideType;
-  roleName?: string;
 }
 
 export default function HomeLetterGuideModal({
   isOpen,
   onClose,
   type,
-  roleName,
 }: LetterGuideModalProps) {
   if (!isOpen) return null;
 
@@ -42,7 +40,7 @@ export default function HomeLetterGuideModal({
 
         <div>
           {guide.tips.map((tip, index) => (
-            <div>- {tip}</div>
+            <div key={`tip-${index}`}>- {tip}</div>
           ))}
         </div>
       </div>
