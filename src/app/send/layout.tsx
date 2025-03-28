@@ -1,4 +1,6 @@
 "use client";
+import CommonHeader from "@/components/layout/CommonHeader";
+import CommonLayout from "@/components/layout/CommonLayout";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -19,10 +21,8 @@ export default function SendLayout({
   });
 
   return (
-    <>
-      <div className="flex-col items-start min-w-[375px] w-screen max-w-global min-h-screen px-4">
-        <main>{children}</main>
-      </div>
-    </>
+    <CommonLayout>
+      <main>{children}</main>
+    </CommonLayout>
   );
 }

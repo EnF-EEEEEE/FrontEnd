@@ -1,16 +1,14 @@
 "use client";
 
-import LeftArrow from "@/components/Icons/common/LeftArrow";
 import { categories } from "@/constants/letterCategoryList";
 import { useLetterStore } from "@/store/useLetterStore";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import CommonHeader from "../layout/CommonHeader";
 
 export default function Category() {
   const { categoryName, setCategory, setStep } = useLetterStore();
   const [blinkingCategory, setBlinkingCategory] = useState<string | null>(null);
-  const router = useRouter();
 
   const handleCategoryClick = (categoryId: string, categoryName: string) => {
     setCategory(categoryName); // category.name 저장
@@ -23,32 +21,24 @@ export default function Category() {
   };
 
   return (
-    <div className="relative w-full h-full text-black">
-      <div className="flex flex-col gap-2">
-        <nav className="flex justify-between py-4">
-          <LeftArrow
-            className="w-6 h-6 cursor-pointer select-none"
-            stroke="#292D32"
-            onClick={() => router.back()}
-          />
-        </nav>
+    <div>
+      <CommonHeader noPadding className="mb-2" />
 
-        <div className="flex flex-col gap-6">
-          <div>
-            <p className="text-[#292D32] text-[20px] font-bold leading-[28px] tracking-[-0.08px] whitespace-break-spaces">
-              {"어떤 이야기를 \n나누고 싶으신가요?"}
-            </p>
-            <p className="text-[#6B7178] font-pretendard text-[16px] font-normal leading-[24px] tracking-[-0.064px] mt-1.5">
-              아래 카테고리 중에서 선택해주세요
-            </p>
-          </div>
+      <div>
+        <p className="text-Title3_B_20 whitespace-break-spaces mb-2">
+          {"어떤 이야기를 \n나누고 싶으신가요?"}
+        </p>
+        <p className="text-Body1_R_16 text-gray06">
+          아래 카테고리 중에서 선택해주세요
+        </p>
+      </div>
 
-          <div className="flex justify-center w-full">
-            <div className="grid grid-cols-2 gap-2 w-full max-w-global">
-              {categories.map((category) => (
-                <div
-                  key={category.id}
-                  className={`w-full h-full py-4 px-3 select-none flex flex-col items-center justify-center 
+      <div className="flex justify-center w-full py-6">
+        <div className="grid grid-cols-2 gap-2 w-full">
+          {categories.map((category) => (
+            <div
+              key={category.id}
+              className={`w-full h-full py-global px-3 select-none flex flex-col items-center justify-center gap-[6px]  
                         bg-white rounded-2xl shadow-sm cursor-pointer border 
                         ${
                           categoryName === category.name
@@ -57,27 +47,27 @@ export default function Category() {
                               : "border-[#84A667]"
                             : "border-transparent"
                         }`}
-                  onClick={() =>
-                    handleCategoryClick(category.id, category.name)
-                  }
-                >
-                  <Image
-                    src={category.src}
-                    alt={category.name}
-                    width={50}
-                    height={56}
-                  />
-                  <p className="text-[#6B7178] text-base font-medium leading-6 tracking-tight">
-                    {category.description}
-                  </p>
-                  <p className="text-base font-bold leading-6 tracking-tight text-[#292D32]">
-                    {category.name}
-                  </p>
-                </div>
-              ))}
+              onClick={() => handleCategoryClick(category.id, category.name)}
+            >
+              <div className="w-[77px] h-[63px] relative">
+                <Image
+                  src={category.src}
+                  alt={category.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="text-center">
+                <p className="text-Body2_M_14 text-gray06">
+                  {category.description}
+                </p>
+                <p className="text-Body1_B_16">{category.name}</p>
+              </div>
             </div>
-            <style>
-              {`
+          ))}
+        </div>
+        <style>
+          {`
           @keyframes blink {
             0% { border-color: #84A667; }
             50% { border-color: transparent; }
@@ -87,9 +77,7 @@ export default function Category() {
             animation: blink 1s ease-in-out;
           }
         `}
-            </style>
-          </div>
-        </div>
+        </style>
       </div>
     </div>
   );
