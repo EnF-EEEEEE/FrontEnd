@@ -1,6 +1,7 @@
 "use client";
 
 import InfoBox from "@/components/common/InfoBox";
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 import RoleCard from "@/components/signup/RoleCard";
 import TermsStep from "@/components/signup/TermsStep";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
@@ -79,11 +80,11 @@ export default function UserRolePage() {
           />
         </div>
 
-        <div className="absolute bottom-[44px] left-0 right-0 px-global">
+        <BottomFixedElement>
           <StyledButton onClick={handleNext} disabled={!selectedRole}>
             다음
           </StyledButton>
-        </div>
+        </BottomFixedElement>
       </div>
 
       {isTermsOpen && <TermsStep isModal={true} onClose={handleTermsClose} />}

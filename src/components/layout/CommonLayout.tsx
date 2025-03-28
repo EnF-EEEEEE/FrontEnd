@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 interface CommonLayoutProps {
   children: ReactNode;
   noPadding?: boolean;
-  bottomFixedButton?: ReactNode;
   isFullScreen?: boolean;
   className?: string;
 }
@@ -12,7 +11,6 @@ interface CommonLayoutProps {
 export default function CommonLayout({
   children,
   noPadding = false,
-  bottomFixedButton,
   isFullScreen = false,
   className = "",
 }: CommonLayoutProps) {
@@ -26,12 +24,6 @@ export default function CommonLayout({
       )}
     >
       {children}
-
-      {bottomFixedButton && (
-        <div className="absolute bottom-[44px] left-0 right-0 px-global z-50">
-          {bottomFixedButton}
-        </div>
-      )}
     </div>
   );
 }

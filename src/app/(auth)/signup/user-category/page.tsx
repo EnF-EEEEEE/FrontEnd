@@ -1,6 +1,7 @@
 "use client";
 
 import InfoBox from "@/components/common/InfoBox";
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import StyledButton from "@/components/ui/StyledButton";
 import { UserCategory, useSignupStore } from "@/store/useSignupStore";
@@ -137,11 +138,11 @@ export default function UserCategoryPage() {
         </div>
       </div>
 
-      <div className="absolute bottom-[44px] left-0 right-0 px-global">
+      <BottomFixedElement>
         <StyledButton onClick={handleNext} disabled={selected.size === 0}>
           완료
         </StyledButton>
-      </div>
+      </BottomFixedElement>
     </div>
   );
 }
