@@ -10,7 +10,7 @@ export default function SignupLayout({
 }) {
   return (
     <CommonLayout isFullScreen>
-      <CommonHeader title="회원가입" noPadding />
+      <CommonHeader title="회원가입" />
 
       <div className="py-2">{children}</div>
     </CommonLayout>
