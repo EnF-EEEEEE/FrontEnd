@@ -10,7 +10,7 @@ export default function SignupLayout({
 }) {
   return (
     <CommonLayout isFullScreen>
-      <CommonHeader title="버디테스트" noPadding />
+      <CommonHeader title="버디테스트" />
 
       <div className="py-2">{children}</div>
     </CommonLayout>
