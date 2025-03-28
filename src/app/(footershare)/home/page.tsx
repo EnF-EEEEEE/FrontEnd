@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Banner from "@/components/home/Banner";
 import HomeMainSection from "@/components/home/HomeMainSection";
-import HomeLetterGuideModal from "@/components/letter/HomeLetterGuideModal";
+import LetterGuideModal from "@/components/letter/LetterGuideModal";
 import Header from "@/components/ui/Header";
 import { getUserInfo } from "@/services/homeGetApi";
 import { useUserStore } from "@/store/useUserStore";
@@ -101,7 +101,7 @@ const Home: React.FC = () => {
         <HomeMainSection userData={userData} userRole={userRole!} />
 
         {isGuideOpen && (
-          <HomeLetterGuideModal
+          <LetterGuideModal
             isOpen={isGuideOpen}
             onClose={() => setIsGuideOpen(false)}
             type={userRole === "MENTOR" ? "reply" : "letter"}
