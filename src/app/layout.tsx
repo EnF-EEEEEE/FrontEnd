@@ -54,8 +54,7 @@ export default function RootLayout({
         className={`${pretendard.variable} font-pretendard flex justify-center`}
       >
         {/* ✅ React Query Provider 적용 */}
-        <main className="h-full w-full max-w-[476px] flex flex-col shadow-2xl bg-white02">
-          {/* <main className="min-h-[100svh] w-full max-w-[476px] flex flex-col shadow-2xl bg-white02"> */}
+        <main className="min-h-safe-screen w-full max-w-[476px] flex flex-col shadow-2xl bg-white02">
           <Providers>{children}</Providers>
         </main>
       </body>
