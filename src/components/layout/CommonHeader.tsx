@@ -37,7 +37,7 @@ export default function CommonHeader({
   return (
     <header
       className={clsx(
-        "sticky top-0 z-20 w-full h-[56px] bg-white02 flex items-center justify-between",
+        "sticky top-0 z-20 w-full h-[56px] bg-white02 flex items-center justify-between flex-shrink-0",
         addPaddingX && "px-global",
         className
       )}
