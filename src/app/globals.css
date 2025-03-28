@@ -24,6 +24,12 @@
   }
 }
 
+@layer utilities {
+  .max-w-global {
+    max-width: 476px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #fffdf7;
