@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { GuideType, LETTER_GUIDES } from "@/constants/letterGuide";
-import Modal from "../ui/Modal";
+import ActionSheet from "../ui/ActionSheet";
 
 interface LetterGuideModalProps {
   isOpen: boolean;
@@ -20,8 +20,8 @@ export default function LetterGuideModal({
   const guide = LETTER_GUIDES[type];
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="flex flex-col gap-2 mb-global items-center">
+    <ActionSheet isOpen={isOpen} onClose={onClose}>
+      <div className="flex flex-col gap-2 my-global items-center">
         <Image
           src="/images/common/guide.png"
           alt="가이드"
@@ -44,6 +44,6 @@ export default function LetterGuideModal({
           ))}
         </div>
       </div>
-    </Modal>
+    </ActionSheet>
   );
 }
