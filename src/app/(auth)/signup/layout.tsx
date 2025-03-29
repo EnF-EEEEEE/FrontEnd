@@ -10,7 +10,7 @@ export default function SignupLayout({
 }) {
   return (
     <>
-      <CommonHeader title="회원가입" />
+      <CommonHeader title="회원가입" addPaddingX />
 
       <CommonLayout>
         <div className="py-2">{children}</div>
