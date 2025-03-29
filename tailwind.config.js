@@ -15,7 +15,9 @@ module.exports = {
         "2xl": "1536px",
       },
 
-      maxWidth: { global: "476px" },
+      height: {
+        "safe-screen": "calc(100svh - env(safe-area-inset-bottom))",
+      },
       spacing: { global: "16px" },
 
       colors: {
@@ -81,15 +83,15 @@ module.exports = {
           { lineHeight: "24px", fontWeight: "700", letterSpacing: "-0.064px" },
         ],
 
-        Body0_R_18: [
+        Body1_R_18: [
           "18px",
           { lineHeight: "26px", fontWeight: "400", lineSpacing: "-0.072px" },
         ],
-        Body0_M_18: [
+        Body1_M_18: [
           "18px",
           { lineHeight: "26px", fontWeight: "500", lineSpacing: "-0.072px" },
         ],
-        Body0_B_18: [
+        Body1_B_18: [
           "18px",
           { lineHeight: "26px", fontWeight: "700", lineSpacing: "-0.072px" },
         ],
@@ -148,7 +150,7 @@ module.exports = {
       },
 
       fontFamily: {
-        nanumBrush: ["var(--font-nanumBrush)", "cursive"],
+        pretendard: ["var(--font-pretendard)"],
       },
       keyframes: {
         slideUp: {
