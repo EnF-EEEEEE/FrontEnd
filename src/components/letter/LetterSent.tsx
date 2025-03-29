@@ -5,9 +5,9 @@ import { useLetterStore } from "@/store/useLetterStore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Toggle from "./Toggle";
 import BottomFixedElement from "../layout/BottomFixedElement";
 import StyledButton from "../ui/StyledButton";
+import NotificationToggle from "./NotificationToggle";
 
 // ✅ Lottie를 SSR에서 제외하여 클라이언트에서만 로드
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
@@ -65,7 +65,7 @@ export default function LetterSent() {
             답장이 오면 알림을 받을까요?
           </div>
 
-          <Toggle />
+          <NotificationToggle />
         </div>
 
         <StyledButton
