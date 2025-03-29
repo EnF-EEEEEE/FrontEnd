@@ -35,6 +35,10 @@ export default function UserRolePage() {
     setIsTermsOpen(false);
   };
 
+  const handleMenteeNext = () => {
+    setIsNavigating(true);
+  };
+
   if (isNavigating) {
     return (
       <LoadingSpinner
@@ -82,7 +86,9 @@ export default function UserRolePage() {
         </BottomFixedElement>
       </div>
 
-      {isTermsOpen && <TermsStep onClose={handleTermsClose} />}
+      {isTermsOpen && (
+        <TermsStep onClose={handleTermsClose} onMenteeNext={handleMenteeNext} />
+      )}
     </>
   );
 }

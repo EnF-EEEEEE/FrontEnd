@@ -51,9 +51,10 @@ const TermsItem = ({ checked, label, onCheck, link }: TermsItemProps) => (
 
 interface TermsStepProps {
   onClose?: () => void; // 선택적 속성으로 변경
+  onMenteeNext?: () => void;
 }
 
-const TermsStep: React.FC<TermsStepProps> = ({ onClose }) => {
+const TermsStep: React.FC<TermsStepProps> = ({ onClose, onMenteeNext }) => {
   const router = useRouter();
   const { userRole } = useSignupStore();
 
@@ -82,7 +83,7 @@ const TermsStep: React.FC<TermsStepProps> = ({ onClose }) => {
   const handleNext = () => {
     if (isServiceChecked && isPrivacyChecked) {
       if (userRole === "MENTEE") {
-        router.push("/signup/complete");
+        onMenteeNext?.();
       } else {
         router.push("/signup/user-category");
       }
