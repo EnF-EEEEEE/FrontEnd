@@ -51,10 +51,9 @@ const TermsItem = ({ checked, label, onCheck, link }: TermsItemProps) => (
 
 interface TermsStepProps {
   onClose?: () => void; // 선택적 속성으로 변경
-  isModal?: boolean; // 모달 모드 여부
 }
 
-const TermsStep: React.FC<TermsStepProps> = ({ onClose, isModal = false }) => {
+const TermsStep: React.FC<TermsStepProps> = ({ onClose }) => {
   const router = useRouter();
   const { userRole } = useSignupStore();
 
@@ -82,28 +81,17 @@ const TermsStep: React.FC<TermsStepProps> = ({ onClose, isModal = false }) => {
   /** ✅ 약관 동의 후 모달 닫기 및 다음 단계 이동 */
   const handleNext = () => {
     if (isServiceChecked && isPrivacyChecked) {
-      if (isModal && onClose) {
-        // 모달 모드일 때는 onClose를 호출
-        // console.log("✅ 모달 모드: 약관 동의 완료, 모달 닫기");
-        onClose();
+      if (userRole === "MENTEE") {
+        router.push("/signup/complete");
       } else {
-        // 단계 모드일 때는 nextStep 호출
-        // console.log("✅ 단계 모드: 약관 동의 완료, 다음 단계로 이동");
-        if (userRole === "MENTEE") {
-          router.push("/signup/complete");
-        }
         router.push("/signup/userCategory");
       }
     }
   };
 
-  const containerClasses = isModal
-    ? "absolute inset-0 flex items-center justify-center bg-[rgba(51,51,51,0.80)]"
-    : "";
-
   return (
-    <div className={containerClasses}>
-      <div className="absolute bottom-[44px] w-full px-4 ">
+    <div className="absolute inset-0 flex items-center justify-center bg-[rgba(51,51,51,0.80)] z-999">
+      <div className="absolute bottom-[44px] w-full px-4 max-w-global">
         <div>
           {/* ✅ 캐릭터 이미지 */}
           <div className="mt-[50px] flex justify-center">

@@ -87,7 +87,7 @@ export default function UserRolePage() {
         </BottomFixedElement>
       </div>
 
-      {isTermsOpen && <TermsStep isModal={true} onClose={handleTermsClose} />}
+      {isTermsOpen && <TermsStep onClose={handleTermsClose} />}
     </>
   );
 }
