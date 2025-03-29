@@ -8,7 +8,6 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { getBirdyInfo, postLetter } from "@/services/userService";
-import { birdNameMap } from "@/constants/birdNameMap"; // ✅ 외부에서 불러오기
 import { BIRD_TRAIT_STYLES } from "@/constants/birdTraitsStyles";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import CommonHeader from "../layout/CommonHeader";
@@ -16,12 +15,7 @@ import BottomFixedElement from "../layout/BottomFixedElement";
 import StyledButton from "../ui/StyledButton";
 import clsx from "clsx";
 import "./SelectBird.css";
-
-// ✅ 한글 새 이름을 영문으로 변환하여 이미지 경로 생성하는 함수
-const getImageSrc = (birdName: string) => {
-  const englishName = birdNameMap[birdName] || "default";
-  return `/images/letter-slide/${englishName}_profile.png`;
-};
+import { getBirdImageSrc } from "@/util/birdTypeUtils";
 
 export interface Bird {
   birdName: string;
@@ -36,7 +30,7 @@ interface BirdCardProps {
 }
 
 const BirdCard = ({ bird, active, onClick }: BirdCardProps) => {
-  const imageSrc = getImageSrc(bird.birdName);
+  const imageSrc = getBirdImageSrc(bird.birdName);
 
   return (
     <div
