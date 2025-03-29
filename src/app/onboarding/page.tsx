@@ -32,7 +32,7 @@ export default function OnboardingPage() {
 
   return (
     <>
-      <CommonLayout noPadding isFullScreen className="bg-[#a9c6ae]">
+      <CommonLayout noPadding className="bg-[#a9c6ae]">
         <Swiper
           pagination={{
             clickable: true,
@@ -45,13 +45,13 @@ export default function OnboardingPage() {
           {onboardingSlides.map((slide, index) => (
             <SwiperSlide
               key={index}
-              className="relative flex flex-col items-center justify-center"
+              className="relative h-full flex flex-col items-center justify-center"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={slide.image}
                 alt={`onboarding-step-${index + 1}`}
-                className="w-full object-cover object-center"
+                className="w-full h-full object-cover object-center"
               />
 
               <div className="absolute top-[88px] px-[26px] text-line01 whitespace-pre-wrap">
