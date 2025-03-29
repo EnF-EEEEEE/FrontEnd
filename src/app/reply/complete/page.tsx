@@ -1,5 +1,5 @@
 "use client";
-import Toggle from "@/components/letter/Toggle";
+import NotificationToggle from "@/components/letter/NotificationToggle";
 import { useLetterInfoStore } from "@/store/letterInfoStore";
 import { birdNameMap } from "@/constants/birdNameMap"; // ✅ birdName 변환 맵 추가
 import dynamic from "next/dynamic";
@@ -65,7 +65,8 @@ const LetterReplyCompletePage: React.FC = () => {
                 고마움 표시가 오면 알림을 받을까요?
               </p>
             </div>
-            <Toggle />
+
+            <NotificationToggle />
           </div>
           <div
             className="min-w-[343px] w-full p-[13px_16px] flex justify-center items-center gap-[8px] rounded-[8px] bg-[#292D32] mt-[17px] cursor-pointer"
