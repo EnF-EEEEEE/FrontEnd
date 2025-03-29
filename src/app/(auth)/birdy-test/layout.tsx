@@ -3,7 +3,7 @@
 import CommonLayout from "@/components/layout/CommonLayout";
 import CommonHeader from "@/components/layout/CommonHeader";
 
-export default function SignupLayout({
+export default function BirdyTestLayout({
   children,
 }: {
   children: React.ReactNode;

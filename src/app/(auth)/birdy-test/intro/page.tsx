@@ -1,12 +1,13 @@
 "use client";
 
 import InfoBox from "@/components/common/InfoBox";
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 import StyledButton from "@/components/ui/StyledButton";
 import { useSignupStore } from "@/store/useSignupStore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function SignupIntro() {
+export default function BirdyTestIntro() {
   const router = useRouter();
   const { nickname } = useSignupStore();
 
@@ -27,11 +28,11 @@ export default function SignupIntro() {
         />
       </div>
 
-      <div className="absolute bottom-[44px] left-0 right-0 px-global">
+      <BottomFixedElement>
         <StyledButton onClick={() => router.push("/birdy-test/question/1")}>
           좋아요!
         </StyledButton>
-      </div>
+      </BottomFixedElement>
     </div>
   );
 }
