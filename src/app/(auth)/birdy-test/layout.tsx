@@ -9,10 +9,12 @@ export default function SignupLayout({
   children: React.ReactNode;
 }) {
   return (
-    <CommonLayout isFullScreen>
+    <>
       <CommonHeader title="버디테스트" />
 
-      <div className="py-2">{children}</div>
-    </CommonLayout>
+      <CommonLayout>
+        <div className="py-2">{children}</div>
+      </CommonLayout>
+    </>
   );
 }

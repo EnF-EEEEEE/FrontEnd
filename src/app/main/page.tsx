@@ -22,7 +22,7 @@ export default function MainPage() {
 
   return (
     <>
-      <CommonLayout noPadding isFullScreen>
+      <CommonLayout noPadding>
         <Image
           src="/images/common/background_main.svg"
           alt="배경"
