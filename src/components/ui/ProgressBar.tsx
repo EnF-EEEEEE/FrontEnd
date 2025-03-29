@@ -15,7 +15,7 @@ export default function ProgressBar({
 
   return (
     <div className="w-full">
-      <div className="w-full bg-gray03 rounded-[10px] h-[5px]">
+      <div className="w-full bg-gray03 rounded-[10px] h-[5px] overflow-hidden">
         <div
           className="rounded-[10px] h-full transition-all"
           style={{
