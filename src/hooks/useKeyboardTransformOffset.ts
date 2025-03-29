@@ -49,7 +49,7 @@ export default function useKeyboardTransformOffset({
       document.removeEventListener("focusout", handleFocusOut);
       cancelAnimationFrame(animationFrame);
     };
-  }, []);
+  }, [offsetFromKeyboard]);
 
   return transformY;
 }
