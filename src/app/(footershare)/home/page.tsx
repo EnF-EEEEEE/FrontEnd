@@ -94,7 +94,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="px-global">
       <CommonHeader
         left={
           <Image

@@ -26,9 +26,7 @@ const LetterHistory: React.FC<IProps> = ({ userData }) => {
         </div>
       </div>
 
-      <div className="bg-white01 rounded-[20px] border border-line01">
-        <SettingsMenu />
-      </div>
+      <SettingsMenu />
     </div>
   );
 };

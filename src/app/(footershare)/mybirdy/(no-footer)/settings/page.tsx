@@ -10,7 +10,7 @@ const SettingsPage = () => {
   const [isToggled, setIsToggled] = useState(false);
 
   return (
-    <div className="-mx-global">
+    <>
       <CommonHeader title="설정" addPaddingX />
 
       {SETTINGS_OPTIONS.map((section: SettingSection) => (
@@ -35,10 +35,8 @@ const SettingsPage = () => {
 
               {/* 알림 받을 이메일 */}
               <div className="mt-3 w-full bg-line02 border-1 border-gray01 rounded-[10px] px-5 py-global text-gray06">
-                <p className="block text-Caption1_R_12 mb-[6px]">
-                  알림 받을 이메일
-                </p>
-                <p className="block text-Body2_M_14">준비중입니다...</p>
+                <p className="text-Caption1_R_12 mb-[6px]">알림 받을 이메일</p>
+                <p className="text-Body2_M_14">준비중입니다...</p>
               </div>
             </div>
           ) : (
@@ -59,7 +57,7 @@ const SettingsPage = () => {
           )}
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
