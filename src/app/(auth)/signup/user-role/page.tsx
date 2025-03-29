@@ -33,11 +33,6 @@ export default function UserRolePage() {
 
   const handleTermsClose = () => {
     setIsTermsOpen(false);
-    if (selectedRole === "MENTEE") {
-      setIsNavigating(true);
-    } else {
-      router.push("/signup/user-category");
-    }
   };
 
   if (isNavigating) {

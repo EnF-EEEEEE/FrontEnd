@@ -84,13 +84,16 @@ const TermsStep: React.FC<TermsStepProps> = ({ onClose }) => {
       if (userRole === "MENTEE") {
         router.push("/signup/complete");
       } else {
-        router.push("/signup/userCategory");
+        router.push("/signup/user-category");
       }
     }
   };
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-[rgba(51,51,51,0.80)] z-999">
+    <div
+      className="absolute inset-0 flex items-center justify-center bg-[rgba(51,51,51,0.80)] z-999"
+      onClick={onClose}
+    >
       <div className="absolute bottom-[44px] w-full px-4 max-w-global">
         <div>
           {/* ✅ 캐릭터 이미지 */}
@@ -110,51 +113,53 @@ const TermsStep: React.FC<TermsStepProps> = ({ onClose }) => {
         </div>
 
         {/* ✅ 약관 동의 박스 */}
-        <div className="mb-8 w-full bg-white01 rounded-[20px] p-6 text-black01">
-          {/* 전체 동의 */}
-          <div
-            className="flex items-center justify-between cursor-pointer"
-            onClick={handleAllCheck}
-          >
-            <div className="flex items-center gap-2 select-none">
-              <Image
-                src={
-                  isAllChecked
-                    ? "/images/terms/terms-icon-select_all.svg"
-                    : "/images/terms/terms-icon_all.svg"
-                }
-                alt="전체 동의"
-                width={24}
-                height={24}
+        <div onClick={(e) => e.stopPropagation()}>
+          <div className="mb-8 w-full bg-white01 rounded-[20px] p-6">
+            {/* 전체 동의 */}
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={handleAllCheck}
+            >
+              <div className="flex items-center gap-2 select-none">
+                <Image
+                  src={
+                    isAllChecked
+                      ? "/images/terms/terms-icon-select_all.svg"
+                      : "/images/terms/terms-icon_all.svg"
+                  }
+                  alt="전체 동의"
+                  width={24}
+                  height={24}
+                />
+                <p className="text-Body1_M_16">약관 전체 동의하기</p>
+              </div>
+            </div>
+
+            <hr className="w-full my-4 border-gray01" />
+
+            <div className="flex flex-col gap-[10px]">
+              <TermsItem
+                checked={isServiceChecked}
+                label="(필수) 서비스 이용약관"
+                onCheck={() => handleSingleCheck("service")}
+                link="https://important-pansy-82d.notion.site/Dearbirdy-1b51b9cea31e80f2b442d5324f6ad1fe?pvs=4"
               />
-              <p className="text-Body1_M_16">약관 전체 동의하기</p>
+              <TermsItem
+                checked={isPrivacyChecked}
+                label="(필수) 개인정보 처리방침"
+                onCheck={() => handleSingleCheck("privacy")}
+                link="https://important-pansy-82d.notion.site/Dearbirdy-1b51b9cea31e8094b4fefdacee285ff7?pvs=4"
+              />
             </div>
           </div>
 
-          <hr className="w-full my-4 border-gray01" />
-
-          <div className="flex flex-col gap-[10px]">
-            <TermsItem
-              checked={isServiceChecked}
-              label="(필수) 서비스 이용약관"
-              onCheck={() => handleSingleCheck("service")}
-              link="https://important-pansy-82d.notion.site/Dearbirdy-1b51b9cea31e80f2b442d5324f6ad1fe?pvs=4"
-            />
-            <TermsItem
-              checked={isPrivacyChecked}
-              label="(필수) 개인정보 처리방침"
-              onCheck={() => handleSingleCheck("privacy")}
-              link="https://important-pansy-82d.notion.site/Dearbirdy-1b51b9cea31e8094b4fefdacee285ff7?pvs=4"
-            />
-          </div>
+          <StyledButton
+            onClick={handleNext}
+            disabled={!isServiceChecked || !isPrivacyChecked}
+          >
+            다음
+          </StyledButton>
         </div>
-
-        <StyledButton
-          onClick={handleNext}
-          disabled={!isServiceChecked || !isPrivacyChecked}
-        >
-          다음
-        </StyledButton>
       </div>
     </div>
   );
