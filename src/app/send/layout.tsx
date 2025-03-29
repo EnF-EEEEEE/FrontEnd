@@ -1,5 +1,5 @@
 "use client";
-import CommonHeader from "@/components/layout/CommonHeader";
+
 import CommonLayout from "@/components/layout/CommonLayout";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
