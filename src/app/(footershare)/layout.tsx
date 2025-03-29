@@ -31,11 +31,9 @@ export default function SharedLayout({
       {report && <Report />}
       {limit && <Limit />}
 
-      <CommonLayout>
-        {children}
+      <CommonLayout className="mb-[60px] pb-2">{children}</CommonLayout>
 
-        <Footer />
-      </CommonLayout>
+      <Footer />
     </>
   );
 }
