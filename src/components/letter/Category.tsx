@@ -5,6 +5,42 @@ import { useLetterStore } from "@/store/useLetterStore";
 import Image from "next/image";
 import { useState } from "react";
 import CommonHeader from "../layout/CommonHeader";
+import clsx from "clsx";
+
+function CategoryCard({
+  name,
+  description,
+  src,
+  selected,
+  blinking,
+  onClick,
+}: {
+  name: string;
+  description: string;
+  src: string;
+  selected: boolean;
+  blinking: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <div
+      className={clsx(
+        "w-full h-full py-global px-3 select-none flex flex-col items-center justify-center gap-[6px] bg-white01 rounded-2xl shadow-sm cursor-pointer border",
+        selected ? "border-green03" : "border-transparent",
+        blinking && "animate-blink"
+      )}
+      onClick={onClick}
+    >
+      <div className="w-[77px] h-[63px] relative">
+        <Image src={src} alt={name} fill className="object-contain" />
+      </div>
+      <div className="text-center">
+        <p className="text-Body2_M_14 text-gray06">{description}</p>
+        <p className="text-Body1_B_16">{name}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function Category() {
   const { categoryName, setCategory, setStep } = useLetterStore();
@@ -21,53 +57,35 @@ export default function Category() {
   };
 
   return (
-    <div>
-      <CommonHeader className="mb-2" />
+    <>
+      <CommonHeader className="px-global" />
 
-      <div>
-        <p className="text-Title3_B_20 whitespace-break-spaces mb-2">
-          {"어떤 이야기를 \n나누고 싶으신가요?"}
-        </p>
-        <p className="text-Body1_R_16 text-gray06">
-          아래 카테고리 중에서 선택해주세요
-        </p>
-      </div>
-
-      <div className="flex justify-center w-full py-6">
-        <div className="grid grid-cols-2 gap-2 w-full">
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              className={`w-full h-full py-global px-3 select-none flex flex-col items-center justify-center gap-[6px]  
-                        bg-white rounded-2xl shadow-sm cursor-pointer border 
-                        ${
-                          categoryName === category.name
-                            ? blinkingCategory === category.id
-                              ? "border-[#84A667] animate-blink" // 깜빡이는 애니메이션 적용
-                              : "border-[#84A667]"
-                            : "border-transparent"
-                        }`}
-              onClick={() => handleCategoryClick(category.id, category.name)}
-            >
-              <div className="w-[77px] h-[63px] relative">
-                <Image
-                  src={category.src}
-                  alt={category.name}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="text-center">
-                <p className="text-Body2_M_14 text-gray06">
-                  {category.description}
-                </p>
-                <p className="text-Body1_B_16">{category.name}</p>
-              </div>
-            </div>
-          ))}
+      <div className="px-global mt-2">
+        <div>
+          <p className="text-Title3_B_20 whitespace-break-spaces mb-2">
+            {"어떤 이야기를 \n나누고 싶으신가요?"}
+          </p>
+          <p className="text-Body1_R_16 text-gray06">
+            아래 카테고리 중에서 선택해주세요
+          </p>
         </div>
-        <style>
-          {`
+
+        <div className="flex justify-center w-full py-6">
+          <div className="grid grid-cols-2 gap-2 w-full">
+            {categories.map((category) => (
+              <CategoryCard
+                key={category.id}
+                name={category.name}
+                description={category.description}
+                src={category.src}
+                selected={categoryName === category.name}
+                blinking={blinkingCategory === category.id}
+                onClick={() => handleCategoryClick(category.id, category.name)}
+              />
+            ))}
+          </div>
+          <style>
+            {`
           @keyframes blink {
             0% { border-color: #84A667; }
             50% { border-color: transparent; }
@@ -77,8 +95,9 @@ export default function Category() {
             animation: blink 1s ease-in-out;
           }
         `}
-        </style>
+          </style>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

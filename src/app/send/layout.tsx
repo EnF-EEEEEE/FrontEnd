@@ -21,7 +21,7 @@ export default function SendLayout({
   });
 
   return (
-    <CommonLayout>
+    <CommonLayout noPadding>
       <main>{children}</main>
     </CommonLayout>
   );
