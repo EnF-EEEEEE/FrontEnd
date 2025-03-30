@@ -237,14 +237,18 @@ const LetterDetailId: React.FC = () => {
                   ? `${letter?.replyLetter.sendUser}`
                   : "답장을 기다리는중"}
               </span>
-              <Image
-                src="/images/icons/more_icon.svg"
-                alt="더보기 아이콘"
-                width={24}
-                height={24}
-                className="mr-2"
-                onClick={() => setShowReportModal(true)}
-              />
+
+              {/* 보고 있는 편지가 답장일 때만 신고하기 버튼 렌더링 */}
+              {letter.replyLetter && (
+                <Image
+                  src="/images/icons/more_icon.svg"
+                  alt="더보기 아이콘"
+                  width={24}
+                  height={24}
+                  className="cursor-pointer mr-2"
+                  onClick={() => setShowReportModal(true)}
+                />
+              )}
               <BookMarkIcon
                 letterStatusSeq={letter.letterStatusSeq}
                 fill={letter.saved ? "#84A667" : "none"}
@@ -454,14 +458,16 @@ const LetterDetailId: React.FC = () => {
             <span className="flex-auto text-[#292D32] font-bold text-base leading-6 tracking-tight ml-1">
               {letter?.replyLetter.sendUser}
             </span>
-            <Image
+
+            {/* 멘토한테는 신고하기 기능 없음 */}
+            {/* <Image
               src="/images/icons/more_icon.svg"
               alt="더보기 아이콘"
               width={24}
               height={24}
-              className="mr-2"
+              className="cursor-pointer mr-2"
               onClick={() => setShowReportModal(true)}
-            />
+            /> */}
             <BookMarkIcon
               letterStatusSeq={letter.letterStatusSeq}
               fill={letter.saved ? "#84A667" : "none"}
