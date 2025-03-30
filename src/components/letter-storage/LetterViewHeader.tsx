@@ -2,9 +2,9 @@ import CommonHeader from "../layout/CommonHeader";
 import ChevronLeft from "../../components/Icons/common/LeftArrow";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import BookMarkIcon from "../Icons/Bookmark_icon";
 import { useState } from "react";
 import LetterReport from "../letter/LetterReport";
+import BookMark from "./BookMark";
 
 function BackButton() {
   const router = useRouter();
@@ -78,11 +78,7 @@ export default function LetterViewHeader({
           />
         )}
 
-        <BookMarkIcon
-          letterStatusSeq={myLetterSeq}
-          fill={isSaved ? "#84A667" : "none"}
-          stroke={isSaved ? "#84A667" : "#C7C7CC"}
-        />
+        <BookMark letterStatusSeq={myLetterSeq} isSaved={isSaved} />
       </div>
     );
   };
