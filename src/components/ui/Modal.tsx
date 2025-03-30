@@ -41,7 +41,7 @@ export default function Modal({
 
       <div
         className={clsx(
-          "relative w-full max-w-global max-h-[90svh] mx-global px-global py-6 bg-white01 rounded-[18px] flex flex-col overflow-y-auto",
+          "relative w-full max-w-global max-h-[90svh] mx-global px-global py-5 bg-white01 rounded-[18px] flex flex-col overflow-y-auto",
           className
         )}
       >
