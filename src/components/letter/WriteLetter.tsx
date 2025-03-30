@@ -27,7 +27,7 @@ interface WriteLetterProps {
 }
 
 export default function WriteLetter({ type }: WriteLetterProps) {
-  const { categoryName, setTitle, setLetter, setStep } = useLetterStore();
+  const { categoryName, setTitle, setLetter } = useLetterStore();
   const { categoryName: replyCategoryName, letterStatusSeq } =
     useLetterInfoStore();
 
@@ -65,7 +65,7 @@ export default function WriteLetter({ type }: WriteLetterProps) {
     setLetter(data.letter);
 
     if (type === "OUTGOING") {
-      setStep(3);
+      router.push("/send/select-bird");
     } else {
       setIsSending(true);
 
@@ -75,8 +75,6 @@ export default function WriteLetter({ type }: WriteLetterProps) {
           categoryName: replyCategoryName,
           letterStatusSeq,
         };
-
-        console.log("replyForm", replyForm);
 
         await postReply(replyForm);
         router.push("/reply/complete");
