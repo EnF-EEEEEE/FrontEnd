@@ -15,6 +15,7 @@ import BottomFixedElement from "../layout/BottomFixedElement";
 import { postReply } from "@/services/letterReply";
 import { useRouter } from "next/navigation";
 import { useLetterInfoStore } from "@/store/letterInfoStore";
+import { LetterType } from "@/constants/letter";
 
 interface FormValues {
   title: string;
@@ -22,10 +23,10 @@ interface FormValues {
 }
 
 interface WriteLetterProps {
-  userRole: "MENTOR" | "MENTEE";
+  type: LetterType;
 }
 
-export default function WriteLetter({ userRole }: WriteLetterProps) {
+export default function WriteLetter({ type }: WriteLetterProps) {
   const { categoryName, setTitle, setLetter, setStep } = useLetterStore();
   const { categoryName: replyCategoryName, letterStatusSeq } =
     useLetterInfoStore();
@@ -63,7 +64,7 @@ export default function WriteLetter({ userRole }: WriteLetterProps) {
     setTitle(data.title);
     setLetter(data.letter);
 
-    if (userRole === "MENTEE") {
+    if (type === "OUTGOING") {
       setStep(3);
     } else {
       setIsSending(true);
@@ -119,7 +120,7 @@ export default function WriteLetter({ userRole }: WriteLetterProps) {
               className="cursor-pointer text-Body2_R_14 text-green03 mt-[6px] underline underline-offset-2"
               onClick={() => setIsDrawerOpen(true)}
             >
-              {userRole === "MENTEE" ? "편지" : "답장"} 이렇게 쓰세요
+              {type === "OUTGOING" ? "편지" : "답장"} 이렇게 쓰세요
             </button>
           </div>
 
@@ -182,7 +183,7 @@ export default function WriteLetter({ userRole }: WriteLetterProps) {
         <LetterGuideModal
           isOpen={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
-          type={userRole === "MENTEE" ? "letter" : "reply"}
+          type={type}
         />
       )}
     </>
