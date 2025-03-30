@@ -1,9 +1,11 @@
 import { birdNameMap } from "@/constants/birdNameMap";
-import { LetterType } from "@/constants/letter";
+import { LetterType, ReactionId } from "@/constants/letter";
 import { CategoryNameType } from "@/constants/letterCategoryList";
 import { formatLetterDate } from "@/util/letterUtils";
 import clsx from "clsx";
 import Image from "next/image";
+import SendReactionButton from "../letter-storage/SendReactionButton";
+import ReactionDisplay from "../letter-storage/ReactionDisplay";
 
 interface LetterDisplayProps {
   type: LetterType;
@@ -15,6 +17,9 @@ interface LetterDisplayProps {
   title: string;
   content: string;
   letterDate: string;
+  letterSeq?: number;
+  reactionId: ReactionId | null;
+  userRole: "MENTOR" | "MENTEE";
 }
 
 export default function LetterDisplay({
@@ -27,6 +32,9 @@ export default function LetterDisplay({
   title,
   content,
   letterDate,
+  letterSeq,
+  reactionId,
+  userRole,
 }: LetterDisplayProps) {
   const formattedLetterDate = formatLetterDate(letterDate);
 
@@ -91,6 +99,24 @@ export default function LetterDisplay({
           </p>
         </div>
       </div>
+
+      {userRole === "MENTEE" &&
+        type === "REPLY" &&
+        !reactionId &&
+        letterSeq && (
+          <div className="mt-global">
+            <SendReactionButton
+              recipientBirdType={authorBirdType}
+              letterSeq={letterSeq}
+            />
+          </div>
+        )}
+
+      {type === "REPLY" && reactionId && (
+        <div className="mt-global">
+          <ReactionDisplay reactionId={reactionId} />
+        </div>
+      )}
     </div>
   );
 }
