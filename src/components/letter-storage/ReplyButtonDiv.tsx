@@ -42,7 +42,7 @@ export default function ReplyButtonDiv({
       <div>
         <div className="h-[140px]" />
 
-        <BottomFixedElement className="flex flex-col gap-2">
+        <BottomFixedElement className="flex flex-col gap-2 bg-white02 pt-1">
           <button
             className="cursor-pointer text-green03 text-Body2_M_14"
             onClick={() => setIsPassReplyDialogVisible(true)}
