@@ -1,3 +1,5 @@
+import { ReactionId, reactionList } from "@/constants/letter";
+
 export const formatLetterDate = (dateString: string): string => {
   const date = new Date(dateString);
 
@@ -20,4 +22,11 @@ export const formatLetterDate = (dateString: string): string => {
   const hour = hours % 12 || 12; // 12시간제 포맷으로 변환
 
   return `${month}월 ${day}일, ${timeOfDay} ${hour}시의 마음`;
+};
+
+export const getReactionIdByMessage = (
+  message: string
+): ReactionId | undefined => {
+  const reaction = reactionList.find((item) => item.message === message);
+  return reaction?.id;
 };
