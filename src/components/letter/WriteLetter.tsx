@@ -66,12 +66,6 @@ export default function WriteLetter({ type }: WriteLetterProps) {
 
   const [charCount, setCharCount] = useState<string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length <= 300) {
-      setCharCount(e.target.value);
-    }
-  };
-
   const onSubmit = async (data: FormValues) => {
     setTitle(data.title);
     setLetter(data.letter);
@@ -162,13 +156,13 @@ export default function WriteLetter({ type }: WriteLetterProps) {
             {/* 내용 필드 */}
             <div className="flex flex-1 px-5 py-global">
               <textarea
-                maxLength={300}
+                maxLength={400}
                 {...register("letter", {
                   required: "편지 내용을 입력해주세요",
                 })}
                 placeholder="편지 내용을 입력해주세요"
                 className="w-full placeholder-gray03 text-Body1_R_16 caret-green01 focus:outline-none resize-none"
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => setCharCount(e.target.value)}
               />
 
               {errors.letter && (
