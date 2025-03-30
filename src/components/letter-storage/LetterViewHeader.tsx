@@ -64,14 +64,17 @@ export default function LetterViewHeader({
   const HeaderRight = () => {
     return (
       <div className="flex items-center gap-2">
-        {userRole === "MENTEE" && (
+        {userRole === "MENTEE" && replyLetterSeq && (
           <Image
             src="/images/icons/more_icon.svg"
             alt="더보기 아이콘"
             width={24}
             height={24}
             className="cursor-pointer mr-2"
-            onClick={() => setIsReportModalOpen(true)}
+            onClick={() => {
+              setIsReportModalOpen(true);
+              console.log("clicked");
+            }}
           />
         )}
 
