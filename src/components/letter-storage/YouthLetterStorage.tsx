@@ -70,8 +70,7 @@ const YouthLetterStorage: React.FC = () => {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  if (isLoading) return <LoadingSpinner />;
-  console.log(data?.pages);
+  if (isLoading) return <div />;
 
   return (
     <QueryClientProvider client={queryClient}>

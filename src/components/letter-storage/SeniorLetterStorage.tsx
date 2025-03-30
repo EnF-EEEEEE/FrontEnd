@@ -72,7 +72,7 @@ const SeniorLetterStorage: React.FC = () => {
   };
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <div />;
   }
 
   return (
