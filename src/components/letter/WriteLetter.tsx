@@ -36,7 +36,6 @@ export default function WriteLetter({ userRole }: WriteLetterProps) {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<FormValues>();
 
