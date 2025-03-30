@@ -59,24 +59,26 @@ export default function LetterDetailPage() {
     fetchLetterDetail();
   }, [id]);
 
-  console.log(letter);
-
   if (!letter) return <div />;
 
   if (userRole === "MENTOR") {
     return (
       <MentorLetterView
+        myLetterSeq={letter?.letterStatusSeq}
         outgoingLetter={letter?.sendLetter}
         incomingLetter={letter?.replyLetter}
         reactionId={getReactionIdByMessage(letter?.thanksToMentor) || null}
+        isSaved={letter?.saved}
       />
     );
   } else {
     return (
       <MenteeLetterView
+        myLetterSeq={letter?.letterStatusSeq}
         outgoingLetter={letter?.sendLetter}
         incomingLetter={letter?.replyLetter}
         reactionId={getReactionIdByMessage(letter?.thanksToMentor) || null}
+        isSaved={letter?.saved}
       />
     );
   }

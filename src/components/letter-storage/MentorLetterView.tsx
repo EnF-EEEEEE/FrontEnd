@@ -3,24 +3,37 @@
 import { ReactionId } from "@/constants/letter";
 import ReplyButtonDiv from "./ReplyButtonDiv";
 import LetterDisplay from "./LetterDisplay";
+import LetterViewHeader from "./LetterViewHeader";
+import { birdNameMap } from "@/constants/birdNameMap";
 
 interface MentorLetterViewProps {
+  myLetterSeq: number;
   outgoingLetter: any;
   incomingLetter: any;
   reactionId: ReactionId | null;
+  isSaved: boolean;
 }
 
 export default function MentorLetterView({
+  myLetterSeq,
   outgoingLetter,
   incomingLetter,
   reactionId,
+  isSaved,
 }: MentorLetterViewProps) {
-  console.log("incomingLetter", incomingLetter);
-  console.log("reactionId", reactionId);
+  const otherUserBirdType = birdNameMap[incomingLetter.sendUserBird];
 
   return (
     <>
-      <div className="flex flex-col gap-2">
+      <LetterViewHeader
+        userRole="MENTOR"
+        otherUserName={incomingLetter.sendUser}
+        otherUserBirdType={otherUserBirdType}
+        myLetterSeq={myLetterSeq}
+        isSaved={isSaved}
+      />
+
+      <div className="flex flex-col gap-2 mt-2 mb-global">
         {!outgoingLetter && (
           <div className="p-[14px] text-center gap-[8px] border border-blue01 bg-[#F0FDFF] rounded-[14px]">
             {/* <p className="text-gray06 text-Body2_B_14 mb-2">
@@ -35,14 +48,14 @@ export default function MentorLetterView({
         <LetterDisplay
           type="REPLY"
           categoryName={incomingLetter.categoryName}
-          authorName={incomingLetter.replyUser}
-          authorBirdType={incomingLetter.replyUserBird}
-          recipientName={incomingLetter.sendUser}
-          recipientBirdType={incomingLetter.sendUserBird}
+          fromUserName={incomingLetter.sendUser}
+          fromUserBirdType={incomingLetter.sendUserBird}
+          toUserName={incomingLetter.replyUser}
+          toUserBirdType={incomingLetter.replyUserBird}
           title={incomingLetter.letterTitle}
           content={incomingLetter.letter}
           letterDate={incomingLetter.creatAt}
-          letterSeq={incomingLetter.letterStatusSeq}
+          letterSeq={incomingLetter.letterSeq}
           reactionId={reactionId}
           userRole={"MENTOR"}
         />
@@ -51,13 +64,14 @@ export default function MentorLetterView({
           <LetterDisplay
             type="OUTGOING"
             categoryName={outgoingLetter.categoryName}
-            authorName={outgoingLetter.replyUser}
-            authorBirdType={outgoingLetter.replyUserBird}
-            recipientName={outgoingLetter.sendUser}
-            recipientBirdType={outgoingLetter.sendUserBird}
+            fromUserName={outgoingLetter.sendUser}
+            fromUserBirdType={outgoingLetter.sendUserBird}
+            toUserName={outgoingLetter.replyUser}
+            toUserBirdType={outgoingLetter.replyUserBird}
             title={outgoingLetter.letterTitle}
             content={outgoingLetter.letter}
             letterDate={outgoingLetter.creatAt}
+            letterSeq={outgoingLetter.letterSeq}
             reactionId={reactionId}
             userRole={"MENTEE"}
           />
@@ -69,7 +83,7 @@ export default function MentorLetterView({
           recipientName={incomingLetter.replyUserBird}
           myBirdType={incomingLetter.sendUser}
           categoryName={incomingLetter.categoryName}
-          letterStatusSeq={incomingLetter.letterStatusSeq}
+          letterStatusSeq={incomingLetter.letterSeq}
         />
       )}
     </>

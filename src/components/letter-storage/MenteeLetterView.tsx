@@ -2,32 +2,61 @@
 
 import { ReactionId } from "@/constants/letter";
 import LetterDisplay from "./LetterDisplay";
+import LetterViewHeader from "./LetterViewHeader";
+import { birdNameMap } from "@/constants/birdNameMap";
 
 interface MenteeLetterViewProps {
+  myLetterSeq: number;
   outgoingLetter: any;
   incomingLetter: any;
   reactionId: ReactionId | null;
+  isSaved: boolean;
 }
 
 export default function MenteeLetterView({
+  myLetterSeq,
   outgoingLetter,
   incomingLetter,
   reactionId,
+  isSaved,
 }: MenteeLetterViewProps) {
+  const replyUserBirdType = birdNameMap[incomingLetter?.sendUserBird];
+
   return (
     <>
-      <div className="flex flex-col gap-2">
+      <LetterViewHeader
+        userRole="MENTEE"
+        otherUserName={incomingLetter?.sendUser}
+        otherUserBirdType={replyUserBirdType}
+        myLetterSeq={myLetterSeq}
+        replyLetterSeq={incomingLetter?.letterSeq}
+        isSaved={isSaved}
+      />
+
+      <div className="flex flex-col gap-2 mt-2 mb-global">
+        {!incomingLetter && (
+          <div className="p-[14px] text-center gap-[8px] border border-blue01 bg-[#F0FDFF] rounded-[14px]">
+            <p className="text-gray06 text-Body2_B_14 mb-2">
+              따뜻한 말이 담긴 답장을 작성하고 있어요
+            </p>
+            <p className="text-Body1_R_16">
+              빠르면 1일, 최대 7일이 걸릴 수 있어요.
+            </p>
+          </div>
+        )}
+
         {incomingLetter && (
           <LetterDisplay
             type="REPLY"
             categoryName={incomingLetter.categoryName}
-            authorName={incomingLetter.replyUser}
-            authorBirdType={incomingLetter.replyUserBird}
-            recipientName={incomingLetter.sendUser}
-            recipientBirdType={incomingLetter.sendUserBird}
+            toUserName={incomingLetter.replyUser}
+            toUserBirdType={incomingLetter.replyUserBird}
+            fromUserName={incomingLetter.sendUser}
+            fromUserBirdType={incomingLetter.sendUserBird}
             title={incomingLetter.letterTitle}
             content={incomingLetter.letter}
             letterDate={incomingLetter.creatAt}
+            letterSeq={incomingLetter.letterSeq}
             reactionId={reactionId}
             userRole="MENTEE"
           />
@@ -36,13 +65,14 @@ export default function MenteeLetterView({
         <LetterDisplay
           type="OUTGOING"
           categoryName={outgoingLetter.categoryName}
-          authorName={outgoingLetter.replyUser}
-          authorBirdType={outgoingLetter.replyUserBird}
-          recipientName={outgoingLetter.sendUser}
-          recipientBirdType={outgoingLetter.sendUserBird}
+          toUserName={outgoingLetter.replyUser}
+          toUserBirdType={outgoingLetter.replyUserBird}
+          fromUserName={outgoingLetter.sendUser}
+          fromUserBirdType={outgoingLetter.sendUserBird}
           title={outgoingLetter.letterTitle}
           content={outgoingLetter.letter}
           letterDate={outgoingLetter.creatAt}
+          letterSeq={outgoingLetter.letterSeq}
           reactionId={reactionId}
           userRole="MENTEE"
         />

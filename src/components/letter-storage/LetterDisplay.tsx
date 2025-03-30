@@ -10,14 +10,14 @@ import ReactionDisplay from "../letter-storage/ReactionDisplay";
 interface LetterDisplayProps {
   type: LetterType;
   categoryName: CategoryNameType;
-  authorName: string;
-  authorBirdType: string;
-  recipientName: string;
-  recipientBirdType: string;
+  toUserName: string;
+  toUserBirdType: string;
+  fromUserName: string;
+  fromUserBirdType: string;
   title: string;
   content: string;
   letterDate: string;
-  letterSeq?: number;
+  letterSeq: number;
   reactionId: ReactionId | null;
   userRole: "MENTOR" | "MENTEE";
 }
@@ -25,10 +25,10 @@ interface LetterDisplayProps {
 export default function LetterDisplay({
   type,
   categoryName,
-  authorName,
-  authorBirdType,
-  recipientName,
-  recipientBirdType,
+  toUserName,
+  toUserBirdType,
+  fromUserName,
+  fromUserBirdType,
   title,
   content,
   letterDate,
@@ -62,14 +62,14 @@ export default function LetterDisplay({
 
       <div className="flex items-end justify-start gap-2">
         <Image
-          src={`/images/birds/${birdNameMap[authorBirdType]}_50.svg`}
+          src={`/images/birds/${birdNameMap[toUserBirdType]}_50.svg`}
           alt="프로필 새 50"
           width={50}
           height={50}
         />
 
         <p className="text-[23px] font-bold leading-[27.6px] iceJaram-Rg">
-          Dear. {authorName}
+          Dear. {toUserName}
         </p>
 
         <p className="p-[1px_6px] rounded-[6px] bg-gray01 text-[#6B7178] text-Body2_M_14">
@@ -89,13 +89,13 @@ export default function LetterDisplay({
 
         <div className="flex items-center gap-2">
           <Image
-            src={`/images/birds/${birdNameMap[recipientBirdType]}_24.svg`}
+            src={`/images/birds/${birdNameMap[fromUserBirdType]}_24.svg`}
             alt="프로필 새 24"
             width={24}
             height={24}
           />
           <p className="font-[Sandoll BaikzongyulPil] text-[18px] font-bold leading-[21.6px] iceJaram-Rg">
-            from. {recipientName}
+            from. {fromUserName}
           </p>
         </div>
       </div>
@@ -106,7 +106,7 @@ export default function LetterDisplay({
         letterSeq && (
           <div className="mt-global">
             <SendReactionButton
-              recipientBirdType={authorBirdType}
+              fromUserBirdType={fromUserBirdType}
               letterSeq={letterSeq}
             />
           </div>
