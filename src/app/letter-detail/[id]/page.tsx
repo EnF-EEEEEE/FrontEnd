@@ -149,7 +149,8 @@ const LetterDetailId: React.FC = () => {
                   답장이 도움이 되셨나요?
                 </div>
                 <div className="text-[#292D32] text-center font-normal text-[14px] leading-[22px] tracking-[-0.056px] mt-2 mb-6">
-                  파랑새가 보낸 답장에 고마움을 보내주세요!
+                  {letter.sendLetter.replyUserBird}가 보낸 답장에 고마움을
+                  보내주세요!
                 </div>
                 <div
                   className="flex w-full p-[20px_16px] justify-start items-center rounded-[20px] border border-[#D6E173] bg-[#FFF] "
