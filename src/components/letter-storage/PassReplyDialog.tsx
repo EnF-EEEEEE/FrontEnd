@@ -22,7 +22,7 @@ const PassReplyDialog: React.FC<IProps> = ({ letterStatusSeq, onClose }) => {
       };
 
       passReply();
-      onClose;
+      onClose();
       setIsConfirmationOpen(true);
     } catch (error) {
       console.log(error);

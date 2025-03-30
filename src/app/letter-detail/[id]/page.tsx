@@ -41,7 +41,7 @@ export default function LetterDetailPage() {
     }
   }, []);
 
-  const [letter, setLetter] = useState<any>(null);
+  const [letter, setLetter] = useState<IData | null>(null);
 
   useEffect(() => {
     const fetchLetterDetail = async () => {
