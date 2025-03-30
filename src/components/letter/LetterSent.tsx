@@ -8,13 +8,15 @@ import { useEffect, useState } from "react";
 import BottomFixedElement from "../layout/BottomFixedElement";
 import StyledButton from "../ui/StyledButton";
 import NotificationToggle from "./NotificationToggle";
+import { useLetterInfoStore } from "@/store/letterInfoStore";
 
 // ✅ Lottie를 SSR에서 제외하여 클라이언트에서만 로드
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
-export default function LetterSent() {
+export default function LetterSent({ type }: { type: "send" | "reply" }) {
   const { myBirdName, setMyBirdName, selectedBird, resetLetter } =
     useLetterStore();
+  const { nickname: replyNickname } = useLetterInfoStore();
   const router = useRouter();
   const [animationData, setAnimationData] = useState(null);
 
@@ -43,7 +45,8 @@ export default function LetterSent() {
     <>
       <div className="flex flex-col min-h-safe-screen pt-[108px] px-global pb-[191px]">
         <div className="text-Title3_B_20 text-center">
-          나의 {myBirdName}가 {selectedBird}에게 <br />
+          나의 {type === "send" ? myBirdName : "버디"}가{" "}
+          {type === "send" ? selectedBird : replyNickname}에게 <br />
           마음을 정성껏 전달할 거예요
         </div>
 
@@ -60,9 +63,11 @@ export default function LetterSent() {
       <BottomFixedElement>
         <div className="px-global py-[10px] border border-gray01 bg-[#F0F1EC] rounded-[12px] flex justify-between items-center mb-[33px]">
           <div className="text-Body2_R_14 text-gray06">
-            빠르면 하루, 최대 7일이 걸릴 수 있어요.
+            {type === "send"
+              ? "빠르면 하루, 최대 7일이 걸릴 수 있어요."
+              : "답장을 확인하면 고마움 표시가 도착해요."}
             <br />
-            답장이 오면 알림을 받을까요?
+            {type === "send" ? "답장이" : "고마움 표시가"} 오면 알림을 받을까요?
           </div>
 
           <NotificationToggle />

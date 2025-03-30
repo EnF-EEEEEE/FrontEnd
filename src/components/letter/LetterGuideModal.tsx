@@ -13,7 +13,7 @@ interface LetterGuideModalProps {
 export default function LetterGuideModal({
   isOpen,
   onClose,
-  type,
+  type = "letter",
 }: LetterGuideModalProps) {
   if (!isOpen) return null;
 

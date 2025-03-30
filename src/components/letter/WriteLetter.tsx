@@ -12,17 +12,27 @@ import {
   MIN_LETTER_COUNT,
 } from "@/constants/progressMessage";
 import BottomFixedElement from "../layout/BottomFixedElement";
+import { postReply } from "@/services/letterReply";
+import { useRouter } from "next/navigation";
+import { useLetterInfoStore } from "@/store/letterInfoStore";
 
 interface FormValues {
   title: string;
   letter: string;
 }
 
-export default function WriteLetter() {
-  const { categoryName, title, setTitle, letter, setLetter, setStep } =
-    useLetterStore();
+interface WriteLetterProps {
+  userRole: "MENTOR" | "MENTEE";
+}
+
+export default function WriteLetter({ userRole }: WriteLetterProps) {
+  const { categoryName, setTitle, setLetter, setStep } = useLetterStore();
+  const { categoryName: replyCategoryName, letterStatusSeq } =
+    useLetterInfoStore();
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [backModal, setBackModal] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -30,15 +40,12 @@ export default function WriteLetter() {
     formState: { errors },
   } = useForm<FormValues>();
 
+  const router = useRouter();
+
   // ✅ 스크롤을 따라가기 위한 ref 추가
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const [charCount, setCharCount] = useState<string>("");
-
-  useEffect(() => {
-    setValue("title", title);
-    setValue("letter", letter);
-  }, [setValue]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= 300) {
@@ -57,7 +64,29 @@ export default function WriteLetter() {
     setTitle(data.title);
     setLetter(data.letter);
 
-    setStep(3);
+    if (userRole === "MENTEE") {
+      setStep(3);
+    } else {
+      setIsSending(true);
+
+      try {
+        const replyForm = {
+          ...data,
+          replyCategoryName,
+          letterStatusSeq,
+        };
+
+        console.log("replyForm", replyForm);
+
+        await postReply(replyForm);
+        router.push("/reply/complete");
+      } catch (error) {
+        console.error("❌ 편지 전송 실패:", error);
+        alert("편지 전송에 실패했어요. 다시 시도해주세요.");
+      } finally {
+        setIsSending(false);
+      }
+    }
   };
 
   const isDisabled =
@@ -69,7 +98,7 @@ export default function WriteLetter() {
         <CommonHeader
           right={
             <SmallButton
-              disabled={isDisabled}
+              disabled={isDisabled || isSending}
               onClick={() => handleSubmit(onSubmit)()}
             >
               다음
@@ -82,16 +111,16 @@ export default function WriteLetter() {
         <div className="flex flex-col flex-1 overflow-y-auto mb-[87px]">
           <div className="px-global py-[10px]">
             <h2 className="text-Title3_B_20">
-              {categoryName}에 대한 고민
+              {categoryName || replyCategoryName}에 대한 고민
               <br />
               이야기를 편지에 담아주세요
             </h2>
 
             <button
-              className="text-Body2_R_14 text-green03 mt-[6px] underline underline-offset-2"
+              className="cursor-pointer text-Body2_R_14 text-green03 mt-[6px] underline underline-offset-2"
               onClick={() => setIsDrawerOpen(true)}
             >
-              편지 이렇게 쓰세요
+              {userRole === "MENTEE" ? "편지" : "답장"} 이렇게 쓰세요
             </button>
           </div>
 
@@ -154,7 +183,7 @@ export default function WriteLetter() {
         <LetterGuideModal
           isOpen={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
-          type="letter"
+          type={userRole === "MENTEE" ? "letter" : "reply"}
         />
       )}
     </>
