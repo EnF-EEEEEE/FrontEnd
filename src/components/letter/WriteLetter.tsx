@@ -16,6 +16,28 @@ import { postReply } from "@/services/letterReply";
 import { useRouter } from "next/navigation";
 import { useLetterInfoStore } from "@/store/letterInfoStore";
 import { LetterType } from "@/constants/letter";
+import ChevronLeft from "../../components/Icons/common/LeftArrow";
+import LetterBackModal from "./LetterBackModal";
+
+function ExitLetterButton() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  return (
+    <>
+      <button
+        onClick={() => setIsDialogOpen(true)}
+        aria-label="뒤로가기"
+        className="cursor-pointer"
+      >
+        <ChevronLeft className="w-6 h-6" stroke="#292D32" />
+      </button>
+
+      {isDialogOpen && (
+        <LetterBackModal onClose={() => setIsDialogOpen(false)} />
+      )}
+    </>
+  );
+}
 
 interface FormValues {
   title: string;
@@ -94,6 +116,7 @@ export default function WriteLetter({ type }: WriteLetterProps) {
     <>
       <div className="min-h-safe-screen flex flex-col">
         <CommonHeader
+          left={<ExitLetterButton />}
           right={
             <SmallButton
               disabled={isDisabled || isSending}
