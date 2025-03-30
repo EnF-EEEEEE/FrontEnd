@@ -1,4 +1,4 @@
-import { birdNameMap } from "@/constants/birdNameMap";
+import { BirdNameKr, birdNameMap } from "@/constants/birdNameMap";
 import { LetterType, ReactionId } from "@/constants/letter";
 import { CategoryNameType } from "@/constants/letterCategoryList";
 import { formatLetterDate } from "@/util/letterUtils";
@@ -11,9 +11,9 @@ interface LetterDisplayProps {
   type: LetterType;
   categoryName: CategoryNameType;
   toUserName: string;
-  toUserBirdType: string;
+  toUserBirdName: BirdNameKr;
   fromUserName: string;
-  fromUserBirdType: string;
+  fromUserBirdName: BirdNameKr;
   title: string;
   content: string;
   letterDate: string;
@@ -26,9 +26,9 @@ export default function LetterDisplay({
   type,
   categoryName,
   toUserName,
-  toUserBirdType,
+  toUserBirdName,
   fromUserName,
-  fromUserBirdType,
+  fromUserBirdName,
   title,
   content,
   letterDate,
@@ -62,7 +62,7 @@ export default function LetterDisplay({
 
       <div className="flex items-end justify-start gap-2">
         <Image
-          src={`/images/birds/${birdNameMap[toUserBirdType]}_50.svg`}
+          src={`/images/birds/${birdNameMap[toUserBirdName]}_50.svg`}
           alt="프로필 새 50"
           width={50}
           height={50}
@@ -89,7 +89,7 @@ export default function LetterDisplay({
 
         <div className="flex items-center gap-2">
           <Image
-            src={`/images/birds/${birdNameMap[fromUserBirdType]}_24.svg`}
+            src={`/images/birds/${birdNameMap[fromUserBirdName]}_24.svg`}
             alt="프로필 새 24"
             width={24}
             height={24}
@@ -106,7 +106,7 @@ export default function LetterDisplay({
         letterSeq && (
           <div className="mt-global">
             <SendReactionButton
-              fromUserBirdType={fromUserBirdType}
+              fromUserBirdName={fromUserBirdName}
               letterSeq={letterSeq}
             />
           </div>

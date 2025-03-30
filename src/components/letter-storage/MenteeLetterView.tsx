@@ -4,11 +4,12 @@ import { ReactionId } from "@/constants/letter";
 import LetterDisplay from "./LetterDisplay";
 import LetterViewHeader from "./LetterViewHeader";
 import { birdNameMap } from "@/constants/birdNameMap";
+import { ILetter } from "@/app/letter-detail/[id]/page";
 
 interface MenteeLetterViewProps {
   myLetterSeq: number;
-  outgoingLetter: any;
-  incomingLetter: any;
+  outgoingLetter: ILetter;
+  incomingLetter: ILetter;
   reactionId: ReactionId | null;
   isSaved: boolean;
 }
@@ -50,9 +51,9 @@ export default function MenteeLetterView({
             type="REPLY"
             categoryName={incomingLetter.categoryName}
             toUserName={incomingLetter.replyUser}
-            toUserBirdType={incomingLetter.replyUserBird}
+            toUserBirdName={incomingLetter.replyUserBird}
             fromUserName={incomingLetter.sendUser}
-            fromUserBirdType={incomingLetter.sendUserBird}
+            fromUserBirdName={incomingLetter.sendUserBird}
             title={incomingLetter.letterTitle}
             content={incomingLetter.letter}
             letterDate={incomingLetter.creatAt}
@@ -66,9 +67,9 @@ export default function MenteeLetterView({
           type="OUTGOING"
           categoryName={outgoingLetter.categoryName}
           toUserName={outgoingLetter.replyUser}
-          toUserBirdType={outgoingLetter.replyUserBird}
+          toUserBirdName={outgoingLetter.replyUserBird}
           fromUserName={outgoingLetter.sendUser}
-          fromUserBirdType={outgoingLetter.sendUserBird}
+          fromUserBirdName={outgoingLetter.sendUserBird}
           title={outgoingLetter.letterTitle}
           content={outgoingLetter.letter}
           letterDate={outgoingLetter.creatAt}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import LetterReport from "../letter/LetterReport";
 import BookMark from "./BookMark";
+import { BirdNameEn } from "@/constants/birdNameMap";
 
 function BackButton() {
   const router = useRouter();
@@ -23,7 +24,7 @@ function BackButton() {
 interface LetterViewHeaderProps {
   userRole: "MENTOR" | "MENTEE";
   otherUserName: string;
-  otherUserBirdType: any;
+  otherUserBirdType: BirdNameEn;
   isSaved: boolean;
   myLetterSeq: number;
   replyLetterSeq?: number;

@@ -5,11 +5,12 @@ import ReplyButtonDiv from "./ReplyButtonDiv";
 import LetterDisplay from "./LetterDisplay";
 import LetterViewHeader from "./LetterViewHeader";
 import { birdNameMap } from "@/constants/birdNameMap";
+import { ILetter } from "@/app/letter-detail/[id]/page";
 
 interface MentorLetterViewProps {
   myLetterSeq: number;
-  outgoingLetter: any;
-  incomingLetter: any;
+  outgoingLetter: ILetter;
+  incomingLetter: ILetter;
   reactionId: ReactionId | null;
   isSaved: boolean;
 }
@@ -49,9 +50,9 @@ export default function MentorLetterView({
           type="REPLY"
           categoryName={incomingLetter.categoryName}
           fromUserName={incomingLetter.sendUser}
-          fromUserBirdType={incomingLetter.sendUserBird}
+          fromUserBirdName={incomingLetter.sendUserBird}
           toUserName={incomingLetter.replyUser}
-          toUserBirdType={incomingLetter.replyUserBird}
+          toUserBirdName={incomingLetter.replyUserBird}
           title={incomingLetter.letterTitle}
           content={incomingLetter.letter}
           letterDate={incomingLetter.creatAt}
@@ -65,9 +66,9 @@ export default function MentorLetterView({
             type="OUTGOING"
             categoryName={outgoingLetter.categoryName}
             fromUserName={outgoingLetter.sendUser}
-            fromUserBirdType={outgoingLetter.sendUserBird}
+            fromUserBirdName={outgoingLetter.sendUserBird}
             toUserName={outgoingLetter.replyUser}
-            toUserBirdType={outgoingLetter.replyUserBird}
+            toUserBirdName={outgoingLetter.replyUserBird}
             title={outgoingLetter.letterTitle}
             content={outgoingLetter.letter}
             letterDate={outgoingLetter.creatAt}

@@ -4,10 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 import ActionSheet from "../ui/ActionSheet";
 import { getThanks } from "@/services/letterDetail";
-import { reactionList } from "@/constants/letter";
+import { Reaction, reactionList } from "@/constants/letter";
+import { BirdNameKr } from "@/constants/birdNameMap";
 
 interface ReactionOptionButtonProps {
-  reaction: any;
+  reaction: Reaction;
   letterSeq: number;
 }
 
@@ -42,14 +43,14 @@ const ReactionOptionButton = ({
 interface ReactionSelectionActionSheetProps {
   isOpen: boolean;
   onClose: () => void;
-  fromUserBirdType: any;
+  fromUserBirdName: BirdNameKr;
   letterSeq: number;
 }
 
 const ReactionSelectionActionSheet = ({
   isOpen,
   onClose,
-  fromUserBirdType,
+  fromUserBirdName,
   letterSeq,
 }: ReactionSelectionActionSheetProps) => {
   return (
@@ -57,7 +58,7 @@ const ReactionSelectionActionSheet = ({
       <div className="mt-global mb-6 text-center">
         <h2 className="text-Body1_B_18">답장이 도움이 되셨나요?</h2>
         <p className="text-Body2_R_14 mt-2 mb-6">
-          {fromUserBirdType}가 보낸 답장에 고마움을 보내주세요!
+          {fromUserBirdName}가 보낸 답장에 고마움을 보내주세요!
         </p>
       </div>
 
@@ -75,12 +76,12 @@ const ReactionSelectionActionSheet = ({
 };
 
 interface SendReactionButtonProps {
-  fromUserBirdType: any;
+  fromUserBirdName: BirdNameKr;
   letterSeq: number;
 }
 
 export default function SendReactionButton({
-  fromUserBirdType,
+  fromUserBirdName,
   letterSeq,
 }: SendReactionButtonProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -114,7 +115,7 @@ export default function SendReactionButton({
       <ReactionSelectionActionSheet
         isOpen={isModalVisible}
         onClose={() => setIsModalVisible(false)}
-        fromUserBirdType={fromUserBirdType}
+        fromUserBirdName={fromUserBirdName}
         letterSeq={letterSeq}
       />
     </>

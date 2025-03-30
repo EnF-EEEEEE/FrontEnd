@@ -2,6 +2,7 @@
 
 import MenteeLetterView from "@/components/letter-storage/MenteeLetterView";
 import MentorLetterView from "@/components/letter-storage/MentorLetterView";
+import { BirdNameKr } from "@/constants/birdNameMap";
 import { getLetterDetail } from "@/services/letterDetail";
 import { getReactionIdByMessage } from "@/util/letterUtils";
 import { useParams } from "next/navigation";
@@ -9,13 +10,13 @@ import { useEffect, useState } from "react";
 
 export interface ILetter {
   letterSeq: number;
-  replyUserBird: string;
+  replyUserBird: BirdNameKr;
   replyUser: string;
   letterTitle: string;
   categoryName: string;
   letter: string;
   creatAt: string;
-  sendUserBird: string;
+  sendUserBird: BirdNameKr;
   sendUser: string;
 }
 
