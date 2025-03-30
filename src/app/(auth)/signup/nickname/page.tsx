@@ -15,11 +15,11 @@ const isValidNickname = (nickname: string) => {
 };
 
 export default function NicknamePage() {
-  const { setNickname } = useSignupStore();
+  const { nickname: storedNickname, setNickname } = useSignupStore();
   const router = useRouter();
 
-  const [nickname, setInput] = useState("");
-  const [debouncedNickname, setDebouncedNickname] = useState(""); // 디바운싱 적용 값
+  const [nickname, setInput] = useState(storedNickname);
+  const [debouncedNickname, setDebouncedNickname] = useState(nickname);
   const [errorType, setErrorType] = useState<
     "tooShort" | "tooLong" | "invalidChar" | "fail" | null
   >(null);
