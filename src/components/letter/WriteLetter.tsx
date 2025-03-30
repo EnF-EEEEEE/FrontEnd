@@ -1,7 +1,7 @@
 "use client";
 
 import { useLetterStore } from "@/store/useLetterStore";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import LetterProgress from "./LetterProgress";
 import { useForm } from "react-hook-form";
 import CommonHeader from "../layout/CommonHeader";
@@ -64,21 +64,11 @@ export default function WriteLetter({ type }: WriteLetterProps) {
 
   const router = useRouter();
 
-  // ✅ 스크롤을 따라가기 위한 ref 추가
-  const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
-
   const [charCount, setCharCount] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= 300) {
       setCharCount(e.target.value);
-      textAreaRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-      const target = e.target;
-      target.style.height = "auto"; // 초기화 후 다시 설정
-      target.style.height = `${target.scrollHeight}px`;
     }
   };
 
@@ -176,10 +166,6 @@ export default function WriteLetter({ type }: WriteLetterProps) {
                 {...register("letter", {
                   required: "편지 내용을 입력해주세요",
                 })}
-                ref={(e) => {
-                  textAreaRef.current = e;
-                  register("letter").ref(e);
-                }}
                 placeholder="편지 내용을 입력해주세요"
                 className="w-full placeholder-gray03 text-Body1_R_16 caret-green01 focus:outline-none resize-none"
                 onChange={(e) => handleChange(e)}
